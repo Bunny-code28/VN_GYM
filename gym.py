@@ -81,7 +81,41 @@ class Gym:
         for row in rows:
             check_ins.append(row[2])
         return check_ins
+# Usage example
+gym = Gym("My Gym")
 
+# Creating a supervisor
+supervisor = Supervisor("Alex", gym)
+
+# Adding members using supervisor
+supervisor.add_member("John Doe", "Premium", "John's Fingerprint")
+supervisor.add_member("Sarah Smith", "Standard", "Sarah's Fingerprint")
+
+# Checking in members
+john_fingerprint_input = hashlib.sha256("John's Fingerprint".encode()).hexdigest()
+gym.check_in_member(john_fingerprint_input)
+
+sarah_fingerprint_input = hashlib.sha256("Sarah's Fingerprint".encode()).hexdigest()
+gym.check_in_member(sarah_fingerprint_input)
+
+unknown_fingerprint_input = hashlib.sha256("Unknown Fingerprint".encode()).hexdigest()
+gym.check_in_member(unknown_fingerprint_input)
+
+# Retrieving check-ins
+john_check_ins = gym.get_check_ins(1)  # Assuming John's member_id is 1
+print(f"John's check-ins: {john_check_ins}")
+
+sarah_check_ins = gym.get_check_ins(2)  # Assuming Sarah's member_id is 2
+print(f"Sarah's check-ins: {sarah_check_ins}")
+
+# Supervisor viewing all members
+supervisor.view_members()
+
+# Supervisor removing a member
+supervisor.remove_member(2)  # Assuming Sarah's member_id is 2
+
+# Supervisor editing a member's information
+supervisor.edit_member(1, name="Johnathon Doe")  # Assuming John's member_id is 1
 # Usage example
 gym = Gym("My Gym")
 
